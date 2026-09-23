@@ -3,79 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Temperature Converter</title>
-
     <link rel="stylesheet" href="assets/style/output.css">
 </head>
 
-<body class="flex min-h-screen items-center justify-center bg-gray-100 px-4 text-gray-900">
+<body class="flex min-h-screen items-center justify-center bg-linear-to-br from-indigo-600 via-white to-cyan-600 px-4 text-slate-800 antialiased">
 
     <main id="app-main" class="w-full max-w-md">
 
-        <section id="converter-card" class="rounded-2xl bg-white p-6 shadow-lg">
+        <!-- Glassmorphism Card -->
+        <section id="converter-card" class="relative shadow-2xl overflow-hidden rounded-4xl bg-white/80 p-8  shadow-indigo-100/50 ring-1 ring-slate-200 backdrop-blur-xl">
+            
+            <!-- Decorative background blob -->
+            <div class="absolute -right-20 -top-20 -z-10 h-40 w-40 rounded-full bg-indigo-400/10 blur-3xl"></div>
+            <div class="absolute -bottom-20 -left-20 -z-10 h-40 w-40 rounded-full bg-cyan-400/10 blur-3xl"></div>
 
-            <h1 id="app-title" class="mb-6 text-center text-2xl font-bold">
-                Temperature Converter
+            <h1 id="app-title" class="mb-8 text-center text-3xl font-extrabold tracking-tight text-transparent bg-clip-text bg-linear-to-r from-indigo-600 to-cyan-500">
+                Temperature
             </h1>
 
-            <form id="temperature-form" class="space-y-4">
+            <form id="temperature-form" class="space-y-6">
 
                 <!-- Temperature input -->
                 <div id="temperature-field">
-                    <label
-                        for="temperature-input"
-                        class="mb-2 block text-sm font-medium"
-                    >
-                        Temperature
+                    <label for="temperature-input" class="mb-2.5 block text-sm font-semibold text-slate-700">
+                        Degrees
                     </label>
+                    <div class="relative">
+                        <!-- Icon -->
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
 
-                    <input
-                        id="temperature-input"
-                        type="number"
-                        placeholder="Enter temperature..."
-                        class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 outline-none focus:border-blue-500"
-                    >
+                            <svg class="h-5 w-5 text-slate-700"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" />
+                            </svg>
+
+
+                        </div>
+                        <input
+                            id="temperature-input"
+                            type="number"
+                            placeholder="e.g. 32"
+                            class="block w-full rounded-xl border-0 bg-slate-50/50 py-3.5 pl-11 pr-4 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 transition-all placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                        >
+                    </div>
                 </div>
 
-                <!-- Source unit -->
-                <div id="from-unit-field">
-                    <label
-                        for="from-unit-select"
-                        class="mb-2 block text-sm font-medium"
-                    >
-                        From
-                    </label>
+                <!-- Grid for Source and Target units -->
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Source unit -->
+                    <div id="from-unit-field">
+                        <label for="from-unit-select" class="mb-2.5 block text-sm font-semibold text-slate-700">
+                            From
+                        </label>
+                        <select
+                            id="from-unit-select"
+                            class="block w-full cursor-pointer rounded-xl border-0 bg-slate-50/50 py-3.5 pl-4 pr-8 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 transition-all focus:bg-white focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                        >
+                            <option value="">Select unit</option>
+                            <option value="celsius">Celsius (°C)</option>
+                            <option value="fahrenheit">Fahrenheit (°F)</option>
+                            <option value="kelvin">Kelvin (K)</option>
+                        </select>
+                    </div>
 
-                    <select
-                        id="from-unit-select"
-                        class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 outline-none focus:border-blue-500"
-                    >
-                        <option value="">Select unit</option>
-                        <option value="celsius">Celsius</option>
-                        <option value="fahrenheit">Fahrenheit</option>
-                        <option value="kelvin">Kelvin</option>
-                    </select>
-                </div>
-
-                <!-- Target unit -->
-                <div id="to-unit-field">
-                    <label
-                        for="to-unit-select"
-                        class="mb-2 block text-sm font-medium"
-                    >
-                        To
-                    </label>
-
-                    <select
-                        id="to-unit-select"
-                        class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 outline-none focus:border-blue-500"
-                    >
-                        <option value="">Select unit</option>
-                        <option value="celsius">Celsius</option>
-                        <option value="fahrenheit">Fahrenheit</option>
-                        <option value="kelvin">Kelvin</option>
-                    </select>
+                    <!-- Target unit -->
+                    <div id="to-unit-field">
+                        <label for="to-unit-select" class="mb-2.5 block text-sm font-semibold text-slate-700">
+                            To
+                        </label>
+                        <select
+                            id="to-unit-select"
+                            class="block w-full cursor-pointer rounded-xl border-0 bg-slate-50/50 py-3.5 pl-4 pr-8 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 transition-all focus:bg-white focus:ring-2 focus:ring-inset focus:ring-cyan-500 sm:text-sm sm:leading-6"
+                        >
+                            <option value="">Select unit</option>
+                            <option value="celsius">Celsius (°C)</option>
+                            <option value="fahrenheit">Fahrenheit (°F)</option>
+                            <option value="kelvin">Kelvin (K)</option>
+                        </select>
+                    </div>
                 </div>
 
                 <!-- Convert button -->
@@ -83,9 +88,9 @@
                     id="convert-btn"
                     type="submit"
                     disabled
-                    class="w-full rounded-lg bg-blue-500 px-5 py-3 font-medium text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-gray-300"
+                    class="mt-2 w-full rounded-xl cursor-pointer bg-linear-to-r from-indigo-500 to-cyan-500 px-5 py-4 text-sm font-bold tracking-wide text-white shadow-lg shadow-indigo-500/30 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-indigo-500/40 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
                 >
-                    Convert
+                    Convert Temperature
                 </button>
 
             </form>
@@ -93,15 +98,15 @@
             <!-- Conversion result -->
             <section
                 id="result-container"
-                class="mt-6 hidden rounded-lg bg-gray-100 p-4 text-center"
+                class="hidden mt-8 rounded-2xl bg-linear-to-br from-slate-50 to-indigo-50 p-6 text-center ring-1 ring-indigo-100 shadow-inner"
             >
-                <p class="mb-1 text-sm text-gray-500">
+                <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-indigo-500">
                     Result
                 </p>
 
                 <p
                     id="result-value"
-                    class="text-2xl font-bold"
+                    class="text-3xl font-extrabold text-slate-800 drop-shadow-sm"
                 ></p>
             </section>
 
@@ -113,4 +118,3 @@
 
 </body>
 </html>
-
