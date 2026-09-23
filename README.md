@@ -67,6 +67,7 @@ Temperature-Converter/
 ├── package.json            # Project dependencies & scripts
 ├── package-lock.json       # Dependency lock file
 ├── preview.png             # Project preview image
+├── favicon.svg             # Project favicon image
 └── README.md               # Project documentation
 ```
 
